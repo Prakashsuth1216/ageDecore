@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Primary - Luxury Champagne Gold -->
+    <color name="gold_primary">#D4AF37</color>
+    <color name="gold_light">#EED789</color>
+    <color name="gold_dark">#997A1E</color>
+    <color name="copper_accent">#C88A58</color>
+
+    <!-- Deep Luxury Architecture Dark Theme -->
+    <color name="bg_main">#0F1115</color>
+    <color name="bg_card">#1A1D24</color>
+    <color name="bg_card_elevated">#242934</color>
+    <color name="surface_border">#333A48</color>
+
+    <!-- Typography -->
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_muted">#9DA3AF</color>
+    <color name="text_hint">#6B7280</color>
+
+    <!-- Badges & Indicators -->
+    <color name="privacy_green">#10B981</color>
+    <color name="privacy_green_dark">#065F46</color>
+    <color name="privacy_green_bg">#132B23</color>
+    <color name="like_heart_red">#F43F5E</color>
+    <color name="accent_blue">#38BDF8</color>
+
+    <!-- Android Defaults -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

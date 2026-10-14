@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AgeDecor" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/gold_primary</item>
+        <item name="colorOnPrimary">@color/bg_main</item>
+        <item name="colorPrimaryContainer">@color/bg_card_elevated</item>
+        <item name="colorOnPrimaryContainer">@color/gold_light</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/copper_accent</item>
+        <item name="colorOnSecondary">@color/bg_main</item>
+
+        <!-- Background / Surface -->
+        <item name="android:windowBackground">@color/bg_main</item>
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_white</item>
+        <item name="colorSurfaceVariant">@color/bg_card_elevated</item>
+        <item name="colorOnSurfaceVariant">@color/text_muted</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/bg_main</item>
+        <item name="android:navigationBarColor">@color/bg_main</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

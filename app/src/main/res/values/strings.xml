@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Age Décor Interior Design</string>
+    <string name="brand_subtitle">Bespoke Architectural Interiors • Mumbai</string>
+    <string name="brand_address">BKC • Worli • Bandra West, Mumbai</string>
+    <string name="brand_owner">Prakash Jangid</string>
+    <string name="brand_phone">+91 8000737561</string>
+    <string name="brand_whatsapp">+918000737561</string>
+    <string name="brand_email_primary">prakashjangid9549@gmail.com</string>
+    <string name="brand_email_secondary">prakashsuthar77789@gmail.com</string>
+
+    <!-- Main Navigation & Headers -->
+    <string name="explore_projects">Explore Signature Projects</string>
+    <string name="category_all">All</string>
+    <string name="category_sea_facing">Sea-Facing Luxury</string>
+    <string name="category_penthouse">Penthouses</string>
+    <string name="category_apartments">Modern 2/3 BHK</string>
+    <string name="category_corporate">Executive Offices</string>
+    <string name="category_villas">Heritage &amp; Villas</string>
+
+    <!-- Project Card labels -->
+    <string name="price_range_label">Estimated Cost</string>
+    <string name="area_label">Carpet Area</string>
+    <string name="timeline_label">Execution Timeline</string>
+    <string name="btn_inquire">Book Consultation</string>
+    <string name="btn_view_details">View Details</string>
+
+    <!-- Privacy & User Data Control -->
+    <string name="privacy_badge_text">100% User Data Sovereignty • Local Encrypted</string>
+    <string name="user_data_hub_title">User Data &amp; Privacy Center</string>
+    <string name="user_data_hub_subtitle">You own 100% of your data. Review, export, or delete anytime.</string>
+    <string name="my_inquiries">My Consultation Inquiries</string>
+    <string name="saved_favorites">My Saved Projects</string>
+    <string name="export_data">Export My Data (JSON)</string>
+    <string name="clear_all_data">Wipe All My Data (Reset)</string>
+
+    <!-- Form Strings -->
+    <string name="form_title">Design Consultation &amp; Requirements</string>
+    <string name="form_subtitle">Tell us about your space. We tailor designs to your lifestyle &amp; budget.</string>
+    <string name="label_client_name">Your Full Name</string>
+    <string name="label_phone">Phone / WhatsApp Number</string>
+    <string name="label_email">Email Address</string>
+    <string name="label_locality">Mumbai Locality / Area</string>
+    <string name="label_property_type">Configuration (1BHK, 2BHK, 3BHK, Villa, Office)</string>
+    <string name="label_carpet_area">Approx. Carpet Area (sq. ft)</string>
+    <string name="label_budget">Preferred Budget Range</string>
+    <string name="label_special_notes">Specific Needs / Vision / Color Schemes</string>
+    <string name="btn_submit_inquiry">Save &amp; Submit Inquiry</string>
+    <string name="btn_send_whatsapp">Chat Directly on WhatsApp</string>
+
+    <!-- Estimator -->
+    <string name="estimator_title">Instant Interior Cost Estimator</string>
+    <string name="estimator_subtitle">Calculate rough budget for Mumbai residential/commercial spaces</string>
+</resources>

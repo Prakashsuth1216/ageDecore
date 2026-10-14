@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Décor Interior Design - Mumbai | Android App Interactive Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-light: #EED789;
+      --gold-dark: #997A1E;
+      --copper: #C88A58;
+      --bg-deep: #0B0D11;
+      --bg-main: #0F1115;
+      --bg-card: #1A1D24;
+      --bg-card-elevated: #242934;
+      --border: #2D3342;
+      --text-white: #FFFFFF;
+      --text-muted: #9DA3AF;
+      --text-hint: #6B7280;
+      --privacy-green: #10B981;
+      --privacy-green-bg: #132B23;
+      --danger: #F43F5E;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #1c202a 0%, #08090c 100%);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .top-deck {
+      text-align: center;
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .top-deck h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .top-deck p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill-badge {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--gold-dark);
+      color: var(--gold-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-privacy {
+      background: var(--privacy-green-bg);
+      border-color: var(--privacy-green);
+      color: var(--privacy-green);
+    }
+
+    /* Device Mockup Shell */
+    .phone-container {
+      width: 412px;
+      height: 846px;
+      background: var(--bg-main);
+      border-radius: 46px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8),
+                  0 0 0 10px #242730,
+                  0 0 0 12px #3e4454;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Android Status Bar & Dynamic Island Notch */
+    .status-bar {
+      height: 38px;
+      background: var(--bg-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .camera-punch {
+      width: 12px;
+      height: 12px;
+      background: #000;
+      border-radius: 50%;
+      border: 1px solid #333;
+    }
+
+    /* Screen Views Manager */
+    .screen {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: none;
+      flex-direction: column;
+      padding-bottom: 70px;
+      scroll-behavior: smooth;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    /* Custom Scrollbar */
+    .screen::-webkit-scrollbar {
+      width: 4px;
+    }
+    .screen::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* Header Component */
+    .app-header {
+      background: var(--bg-card);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-svg {
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+    }
+
+    .brand-titles h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      color: var(--gold-primary);
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+
+    .brand-titles span {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hub-btn {
+      background: var(--privacy-green-bg);
+      border: 1px solid var(--privacy-green);
+      color: var(--privacy-green);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .hub-btn:hover {
+      background: var(--privacy-green);
+      color: #000;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      margin: 16px;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--bg-card-elevated) 0%, #151922 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .hero-label {
+      color: var(--copper);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-top: 4px;
+    }
+
+    .hero-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .btn-calc {
+      background: linear-gradient(45deg, var(--gold-dark), var(--gold-light));
+      color: #0F1115;
+      font-weight: 700;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    /* Categories Horizontal Bar */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-white);
+      padding: 0 16px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .categories-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 16px 8px;
+      scrollbar-width: none;
+    }
+    .categories-bar::-webkit-scrollbar { display: none; }
+
+    .category-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .category-chip.active {
+      background: var(--gold-primary);
+      border-color: var(--gold-light);
+      color: #0F1115;
+    }
+
+    /* Project Cards */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 8px 16px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .project-visual {
+      height: 150px;
+      position: relative;
+      background: #151821;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .project-visual-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      filter: saturate(1.2);
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(45deg, var(--gold-dark), var(--gold-light));
+      color: #0F1115;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 8px;
+    }
+
+    .project-fav-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #999;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .project-fav-btn.active {
+      color: var(--danger);
+      background: rgba(244, 63, 94, 0.15);
+      border-color: var(--danger);
+    }
+
+    .locality-bar {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 6px 12px;
+      background: linear-gradient(transparent, rgba(15,17,21,0.95));
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .project-body {
+      padding: 14px;
+    }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .project-style {
+      font-size: 12px;
+      color: var(--copper);
+      margin-top: 2px;
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .project-specs {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      background: rgba(0,0,0,0.25);
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .spec-item span {
+      display: block;
+      font-size: 10px;
+      color: var(--text-hint);
+    }
+
+    .spec-item strong {
+      font-size: 12px;
+      color: var(--text-white);
+    }
+
+    .price-box {
+      margin-top: 10px;
+      background: var(--bg-card-elevated);
+      border-radius: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+    }
+
+    .price-label {
+      font-size: 9px;
+      color: var(--gold-light);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .price-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-rate {
+      font-size: 11px;
+      color: var(--text-hint);
+      font-weight: normal;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-detail {
+      background: transparent;
+      border: 1px solid var(--gold-dark);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .btn-inquire {
+      background: linear-gradient(45deg, #C59B27, #EED789);
+      border: none;
+      color: #0F1115;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      flex: 1.3;
+    }
+
+    /* Screen: Project Detail */
+    .detail-view {
+      padding: 16px;
+    }
+    .back-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--gold-light);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .detail-hero-box {
+      background: #181c25;
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .highlights-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .highlight-pill {
+      font-size: 12px;
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.08);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border-left: 3px solid var(--gold-primary);
+    }
+
+    /* Screen: Inquiry Form */
+    .form-box {
+      padding: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-white);
+      font-size: 13px;
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .btn-submit-form {
+      width: 100%;
+      background: linear-gradient(45deg, #C59B27, #EED789);
+      color: #0F1115;
+      font-weight: 700;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-whatsapp-form {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--privacy-green);
+      color: var(--privacy-green);
+      font-weight: 600;
+      padding: 11px;
+      border-radius: 12px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Screen: User Data Control Hub */
+    .data-hub-view {
+      padding: 16px;
+    }
+
+    .switch-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 8px;
+    }
+
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+    }
+
+    .switch-row:first-child {
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 6px;
+      padding-bottom: 8px;
+    }
+
+    .switch-info strong {
+      display: block;
+      font-size: 13px;
+      color: var(--text-white);
+    }
+    .switch-info span {
+      font-size: 11px;
+      color: var(--text-hint);
+    }
+
+    /* Toggle Switch */
+    .toggle {
+      width: 42px;
+      height: 24px;
+      background: #333;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .toggle.active {
+      background: var(--privacy-green);
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: 0.2s;
+    }
+    .toggle.active::after {
+      left: 21px;
+    }
+
+    .data-action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .btn-export {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--gold-dark);
+      color: var(--gold-light);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-wipe {
+      flex: 1;
+      background: #2D1217;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .inquiry-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .btn-del-inq {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    /* Screen: Cost Estimator */
+    .estimator-view {
+      padding: 16px;
+    }
+
+    .tier-option {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .tier-option.selected {
+      border-color: var(--gold-primary);
+      background: var(--bg-card-elevated);
+    }
+
+    .tier-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+    .tier-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .calc-result-box {
+      margin-top: 16px;
+      background: var(--bg-card-elevated);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--gold-primary);
+      text-align: center;
+    }
+
+    .calc-total {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--gold-primary);
+      margin: 6px 0;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-hint);
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .nav-item.active {
+      color: var(--gold-primary);
+    }
+
+    .nav-icon {
+      font-size: 18px;
+    }
+
+    /* Floating Consultation FAB */
+    .fab-consult {
+      position: absolute;
+      bottom: 74px;
+      right: 16px;
+      background: linear-gradient(45deg, #C59B27, #EED789);
+      color: #0F1115;
+      font-weight: 700;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 90;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-deck">
+    <h1>AGE DÉCOR INTERIOR DESIGN</h1>
+    <p>Mumbai's Premier Architecture & Turnkey Interior Studio • Android Mobile Application Simulator</p>
+    <div class="badge-bar">
+      <span class="pill-badge pill-privacy">🛡️ 100% User Data Sovereignty & Privacy</span>
+      <span class="pill-badge">📍 BKC • Worli • Bandra West • Powai</span>
+      <span class="pill-badge">📐 Turnkey Estimates & Materials Specs</span>
+    </div>
+  </div>
+
+  <!-- Android Phone Mockup Container -->
+  <div class="phone-container">
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span id="clock">10:30 PM</span>
+      <div class="camera-punch"></div>
+      <span>5G &nbsp; 🔋 98%</span>
+    </div>
+
+    <!-- Screen 1: Home / Projects Catalog -->
+    <div id="screen-home" class="screen active">
+      <!-- App Header -->
+      <div class="app-header">
+        <div class="brand-group">
+          <!-- Geometric Architectural Monogram Logo -->
+          <svg class="brand-logo-svg" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="48,6 86,28 86,68 48,90 10,68 10,28" stroke="#D4AF37" stroke-width="3" fill="rgba(212,175,55,0.05)"/>
+            <polygon points="48,14 78,32 78,64 48,82 18,64 18,32" stroke="#C88A58" stroke-width="1.5" />
+            <path d="M48 22L32 66H38L43 52H53L58 66H64L48 22ZM48 34L51.5 47H44.5L48 34Z" fill="#D4AF37"/>
+            <path d="M44 38H56C65 38 65 58 56 58H44" stroke="#EED789" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div class="brand-titles">
+            <h2>AGE DÉCOR</h2>
+            <span>Interior Design • Mumbai</span>
+          </div>
+        </div>
+        <button class="hub-btn" onclick="navigateTo('screen-datahub')">
+          <span>🛡️ Data Hub</span>
+        </button>
+      </div>
+
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-label">Mumbai Signature Portfolio</div>
+        <div class="hero-title">Bespoke Architectural Living</div>
+        <div class="hero-desc">Tailored residences & offices across Worli, Bandra, Juhu & South Mumbai. 100% confidential & zero data resale.</div>
+        <div class="hero-actions">
+          <button class="btn-calc" onclick="navigateTo('screen-estimator')">⚡ Instant Cost Estimator</button>
+        </div>
+      </div>
+
+      <!-- Categories Filter -->
+      <div class="section-title">
+        <span>Signature Spaces</span>
+        <span style="font-size: 11px; color: var(--gold-light);" id="projectCountDisplay">6 Projects</span>
+      </div>
+      <div class="categories-bar" id="categoryChips">
+        <button class="category-chip active" onclick="filterCategory('All')">All</button>
+        <button class="category-chip" onclick="filterCategory('Sea-Facing Luxury')">Sea-Facing</button>
+        <button class="category-chip" onclick="filterCategory('Penthouses')">Penthouses</button>
+        <button class="category-chip" onclick="filterCategory('Modern 2/3 BHK')">Modern 2/3 BHK</button>
+        <button class="category-chip" onclick="filterCategory('Executive Offices')">Offices</button>
+        <button class="category-chip" onclick="filterCategory('Heritage & Villas')">Villas</button>
+      </div>
+
+      <!-- Projects List -->
+      <div class="projects-list" id="projectsContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Floating Action Button for Quick Consultation -->
+    <button class="fab-consult" onclick="openInquiryForm('General Luxury Consultation (Custom)')">
+      <span>✨ Book Consultation</span>
+    </button>
+
+    <!-- Screen 2: Project Detail -->
+    <div id="screen-detail" class="screen">
+      <div class="detail-view">
+        <button class="back-btn" onclick="navigateTo('screen-home')">← Back to Catalog</button>
+        
+        <div class="detail-hero-box" id="detailContent">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3: Inquiry / Requirement Form -->
+    <div id="screen-form" class="screen">
+      <div class="form-box">
+        <button class="back-btn" onclick="navigateTo('screen-home')">← Back</button>
+        
+        <h2 style="font-size: 18px; color: var(--gold-primary); font-family: 'Cinzel', serif;">Design Consultation Form</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Tell us about your space. We tailor designs to your lifestyle & budget.</p>
+
+        <div style="background: var(--bg-card-elevated); padding: 10px; border-radius: 10px; margin-bottom: 14px; border: 1px solid var(--border);">
+          <span style="font-size: 10px; color: var(--copper); font-weight: bold; text-transform: uppercase;">Selected Inspiration:</span>
+          <div id="formProjectTitle" style="font-size: 14px; color: var(--text-white); font-weight: bold; margin-top: 2px;">General Consultation</div>
+        </div>
+
+        <form id="inquiryForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label>Your Full Name *</label>
+            <input type="text" id="inqName" placeholder="e.g. Vikram Malhotra" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phone / WhatsApp Number *</label>
+            <input type="tel" id="inqPhone" placeholder="e.g. +91 98200 12345" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="inqEmail" placeholder="e.g. vikram@example.com">
+          </div>
+
+          <div class="form-group">
+            <label>Mumbai Locality *</label>
+            <select id="inqLocality">
+              <option>Bandra West / Pali Hill</option>
+              <option>Worli Sea Face / Lower Parel</option>
+              <option>Juhu / Juhu Tara Road</option>
+              <option>Powai / Hiranandani</option>
+              <option>South Mumbai (Marine Drive / Colaba)</option>
+              <option>Andheri West / Lokhandwala</option>
+              <option>Bandra Kurla Complex (BKC)</option>
+              <option>Santacruz / Khar West</option>
+              <option>Navi Mumbai / Palm Beach</option>
+              <option>Thane West</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Property Configuration *</label>
+            <select id="inqConfig">
+              <option>3 BHK Luxury Apartment</option>
+              <option>2 BHK Modern Apartment</option>
+              <option>4 BHK / Duplex Sea-Facing</option>
+              <option>Penthouse Suite</option>
+              <option>Private Luxury Villa</option>
+              <option>Executive Office Suite</option>
+              <option>Commercial Retail Studio</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+              <label>Carpet Area (sq.ft)</label>
+              <input type="number" id="inqCarpet" placeholder="e.g. 1850" value="1850">
+            </div>
+            <div style="flex: 1.2;">
+              <label>Target Budget</label>
+              <select id="inqBudget">
+                <option>₹10L - ₹20L</option>
+                <option selected>₹20L - ₹35L</option>
+                <option>₹35L - ₹50L</option>
+                <option>₹50L - ₹80L</option>
+                <option>₹80L - ₹1.5 Cr</option>
+                <option>Above ₹1.5 Cr</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Specific Needs & Vision *</label>
+            <textarea id="inqNotes" rows="3" placeholder="e.g. Italian modular kitchen, acoustic ceiling, master walk-in wardrobe, ambient lighting..."></textarea>
+          </div>
+
+          <div style="background: var(--privacy-green-bg); border: 1px solid var(--privacy-green); padding: 10px; border-radius: 10px; font-size: 11px; color: var(--privacy-green); margin-bottom: 12px;">
+            🛡️ <strong>Client Privacy:</strong> This inquiry is saved locally in your device's SQLite store. You have 100% control to view, export, or delete it anytime.
+          </div>
+
+          <button type="submit" class="btn-submit-form">Save & Submit Inquiry</button>
+          <button type="button" class="btn-whatsapp-form" onclick="submitToWhatsApp()">💬 Send Directly on WhatsApp</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Screen 4: User Data & Privacy Hub (Complete Control) -->
+    <div id="screen-datahub" class="screen">
+      <div class="data-hub-view">
+        <button class="back-btn" onclick="navigateTo('screen-home')">← Back to Catalog</button>
+
+        <h2 style="font-size: 18px; color: var(--privacy-green); font-family: 'Cinzel', serif;">User Data & Privacy Hub</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">You own 100% of your data. Review, export, or erase anytime.</p>
+
+        <!-- Privacy Toggles -->
+        <div class="switch-card">
+          <div class="switch-row">
+            <div class="switch-info">
+              <strong>Strict Local-Only Storage</strong>
+              <span>Keeps inquiries and bookmarks solely on device</span>
+            </div>
+            <div class="toggle active" id="toggleLocal" onclick="toggleSwitch(this)"></div>
+          </div>
+          <div class="switch-row">
+            <div class="switch-info">
+              <strong>Anonymous Usage Analytics</strong>
+              <span>Disabled by default for full confidentiality</span>
+            </div>
+            <div class="toggle" id="toggleAnalytics" onclick="toggleSwitch(this)"></div>
+          </div>
+        </div>
+
+        <!-- Master Actions -->
+        <div class="data-action-buttons">
+          <button class="btn-export" onclick="exportDataJson()">📥 Export Data (JSON)</button>
+          <button class="btn-wipe" onclick="wipeAllData()">🗑️ Wipe All My Data</button>
+        </div>
+
+        <!-- Inquiries List -->
+        <div class="section-title" style="padding: 0; margin-top: 18px;">
+          <span>My Submitted Inquiries</span>
+          <span style="font-size: 11px; color: var(--text-hint);" id="inqCountText">0 Records</span>
+        </div>
+
+        <div id="inquiriesListContainer">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 5: Cost Estimator -->
+    <div id="screen-estimator" class="screen">
+      <div class="estimator-view">
+        <button class="back-btn" onclick="navigateTo('screen-home')">← Back</button>
+
+        <h2 style="font-size: 18px; color: var(--gold-primary); font-family: 'Cinzel', serif;">Mumbai Cost Estimator</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Instant turnkey rates for residential and commercial interiors.</p>
+
+        <div class="form-group">
+          <label>Carpet Area (sq. ft)</label>
+          <input type="number" id="calcArea" value="1500" oninput="runEstimatorCalculation()">
+        </div>
+
+        <label style="font-size: 12px; font-weight: 600; color: var(--text-white); margin-top: 10px; display: block;">Select Finish & Material Tier</label>
+        
+        <div class="tier-option" id="tier1" onclick="selectTier(1350, 'tier1', 'Essential Luxury')">
+          <div class="tier-title">Essential Luxury (₹1,350 / sq.ft)</div>
+          <div class="tier-sub">Acrylic laminates, branded modular hardware, false ceiling with warm LEDs</div>
+        </div>
+
+        <div class="tier-option selected" id="tier2" onclick="selectTier(1750, 'tier2', 'Signature Luxury')">
+          <div class="tier-title">Signature Luxury (₹1,750 / sq.ft) ★ Popular</div>
+          <div class="tier-sub">Italian marble accents, PU finishes, fluted panels, Blum soft-close fittings</div>
+        </div>
+
+        <div class="tier-option" id="tier3" onclick="selectTier(2250, 'tier3', 'Haute Architecture')">
+          <div class="tier-title">Haute Architecture (₹2,250 / sq.ft)</div>
+          <div class="tier-sub">Full imported marble, motorized automation, bespoke brass inlay, luxury walk-ins</div>
+        </div>
+
+        <div class="calc-result-box">
+          <div style="font-size: 10px; color: var(--gold-light); font-weight: bold; letter-spacing: 1px;">ESTIMATED TURNKEY INVESTMENT</div>
+          <div class="calc-total" id="calcTotalDisplay">₹26,25,000</div>
+          <div style="font-size: 12px; color: var(--text-muted);" id="calcTimelineDisplay">Estimated Duration: ~65 Working Days</div>
+        </div>
+
+        <button class="btn-submit-form" onclick="bookWithEstimate()">Book Consultation for This Budget</button>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <div class="nav-item active" id="nav-home" onclick="navigateTo('screen-home')">
+        <span class="nav-icon">🏛️</span>
+        <span>Projects</span>
+      </div>
+      <div class="nav-item" id="nav-estimator" onclick="navigateTo('screen-estimator')">
+        <span class="nav-icon">⚡</span>
+        <span>Estimator</span>
+      </div>
+      <div class="nav-item" id="nav-form" onclick="openInquiryForm('Custom Design Request')">
+        <span class="nav-icon">📝</span>
+        <span>Inquire</span>
+      </div>
+      <div class="nav-item" id="nav-datahub" onclick="navigateTo('screen-datahub')">
+        <span class="nav-icon">🛡️</span>
+        <span>Data Hub</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Projects Data (Matches Android ProjectRepository.java)
+    const PROJECTS = [
+      {
+        id: 1,
+        title: "The Celestia Sea-Facing Duplex",
+        category: "Sea-Facing Luxury",
+        locality: "Worli Sea Face, Mumbai",
+        carpet: 3400,
+        price: "₹52 Lakhs - ₹68 Lakhs",
+        rate: "₹1,850/sq.ft",
+        days: 90,
+        style: "Italian Contemporary & Fluted Wood",
+        desc: "Panoramic Arabian Sea vista with imported Calacatta marble flooring, acoustic motorized drapery, brass inlaid wall accents, and custom Lutron ambient lighting.",
+        highlights: ["Imported Calacatta Gold Marble", "Bespoke Italian Kitchen", "Acoustic Home Automation", "Ocean-Facing Terrace Bar"]
+      },
+      {
+        id: 2,
+        title: "The Minimalist Sanctuary Penthouse",
+        category: "Penthouses",
+        locality: "Pali Hill, Bandra West, Mumbai",
+        carpet: 2600,
+        price: "₹38 Lakhs - ₹48 Lakhs",
+        rate: "₹1,650/sq.ft",
+        days: 75,
+        style: "Japandi & Warm Minimalist",
+        desc: "Curated Scandinavian-Japanese aesthetic featuring micro-cement textures, concealed frameless doors, natural cane joinery, and warm recessed cove lighting.",
+        highlights: ["Micro-Cement Seamless Flooring", "Zero-Edge Concealed Doors", "Custom White Ash Furniture", "Smart Climate Integration"]
+      },
+      {
+        id: 3,
+        title: "Skyline Horizon 3BHK Residence",
+        category: "Modern 2/3 BHK",
+        locality: "Hiranandani Gardens, Powai, Mumbai",
+        carpet: 1650,
+        price: "₹22 Lakhs - ₹29 Lakhs",
+        rate: "₹1,450/sq.ft",
+        days: 55,
+        style: "Modern Luxe & Space Optimization",
+        desc: "Designed for high-paced Mumbai living with intelligent space-saving partition walls, quartz-top island counter, tinted glass wardrobes, and concealed storage.",
+        highlights: ["Modular German Hardware (Blum)", "Tinted Bronze Glass Wardrobes", "Acoustic Study Alcove", "Zero Dead-Space Engineering"]
+      },
+      {
+        id: 4,
+        title: "The Prestige Corporate Suite",
+        category: "Executive Offices",
+        locality: "Bandra Kurla Complex (BKC), Mumbai",
+        carpet: 4200,
+        price: "₹65 Lakhs - ₹85 Lakhs",
+        rate: "₹1,750/sq.ft",
+        days: 60,
+        style: "Industrial Elegance & Biophilic Office",
+        desc: "Flagship boardroom, executive pods, and living plant partitions engineered for high-profile business leaders in Mumbai's financial center.",
+        highlights: ["Bespoke Acoustic Wall Panels", "Executive Marble Boardroom Table", "Biophilic Indoor Air Purification", "Commercial Grade HVAC Aesthetics"]
+      },
+      {
+        id: 5,
+        title: "Heritage Art-Deco Revival Apartment",
+        category: "Heritage & Villas",
+        locality: "Marine Drive, South Mumbai",
+        carpet: 2100,
+        price: "₹34 Lakhs - ₹44 Lakhs",
+        rate: "₹1,700/sq.ft",
+        days: 70,
+        style: "Art Deco Nostalgia & Modern Brass",
+        desc: "Preserving South Mumbai's iconic colonial architecture with restored arched doorways, geometric monochrome terrazzo, solid Burmese teakwood, and vintage brass chandeliers.",
+        highlights: ["Authentic Custom Terrazzo", "Solid Burmese Teak Restoration", "Geometric Brass Grill Work", "High-Ceiling Ambient Chandeliers"]
+      },
+      {
+        id: 6,
+        title: "The Coastal Villa Estate",
+        category: "Heritage & Villas",
+        locality: "Juhu Tara Road, Mumbai",
+        carpet: 4800,
+        price: "₹75 Lakhs - ₹1.1 Crore",
+        rate: "₹1,950/sq.ft",
+        days: 120,
+        style: "Tropical Luxury Villa",
+        desc: "Sprawling private villa with indoor-outdoor water courts, travertine stone columns, private home theater, and temperature-controlled walk-in closets.",
+        highlights: ["Indoor Zen Water Body", "Travertine Stone Cladding", "Dolby Atmos 9.2 Theater Room", "Private Terrace Lounge"]
+      }
+    ];
+
+    let currentCategory = 'All';
+    let selectedTierRate = 1750;
+    let selectedTierLabel = 'Signature Luxury';
+
+    // Local Storage Data Sovereign Database
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('age_decor_favs') || '[]');
+    }
+
+    function toggleFavorite(id) {
+      let favs = getFavorites();
+      const idx = favs.indexOf(id);
+      if (idx > -1) {
+        favs.splice(idx, 1);
+      } else {
+        favs.push(id);
+      }
+      localStorage.setItem('age_decor_favs', JSON.stringify(favs));
+      renderProjects();
+    }
+
+    function getInquiries() {
+      return JSON.parse(localStorage.getItem('age_decor_inquiries') || '[]');
+    }
+
+    function saveInquiry(inq) {
+      let list = getInquiries();
+      list.unshift(inq);
+      localStorage.setItem('age_decor_inquiries', JSON.stringify(list));
+      renderInquiries();
+    }
+
+    function deleteInquiry(timestamp) {
+      if (confirm("Delete this inquiry record permanently from your device?")) {
+        let list = getInquiries().filter(i => i.timestamp !== timestamp);
+        localStorage.setItem('age_decor_inquiries', JSON.stringify(list));
+        renderInquiries();
+      }
+    }
+
+    function wipeAllData() {
+      if (confirm("Are you sure you want to permanently erase ALL inquiries, bookmarks, and preferences?")) {
+        localStorage.removeItem('age_decor_inquiries');
+        localStorage.removeItem('age_decor_favs');
+        renderInquiries();
+        renderProjects();
+        alert("All user data has been permanently cleared.");
+      }
+    }
+
+    function exportDataJson() {
+      const data = {
+        app: "Age Décor Interior Design",
+        location: "Mumbai, India",
+        export_time: new Date().toISOString(),
+        inquiries: getInquiries(),
+        favorites: getFavorites()
+      };
+      const jsonStr = JSON.stringify(data, null, 2);
+      navigator.clipboard.writeText(jsonStr);
+      alert("User Data Archive copied to clipboard in JSON format!\n\n" + jsonStr.substring(0, 200) + "...");
+    }
+
+    // Navigation System
+    function navigateTo(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(screenId);
+      if (target) {
+        target.classList.add('active');
+        target.scrollTop = 0;
+      }
+
+      // Update bottom nav
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      if (screenId === 'screen-home') document.getElementById('nav-home')?.classList.add('active');
+      if (screenId === 'screen-estimator') document.getElementById('nav-estimator')?.classList.add('active');
+      if (screenId === 'screen-form') document.getElementById('nav-form')?.classList.add('active');
+      if (screenId === 'screen-datahub') {
+        document.getElementById('nav-datahub')?.classList.add('active');
+        renderInquiries();
+      }
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-chip').forEach(c => {
+        c.classList.toggle('active', c.textContent.trim() === cat);
+      });
+      renderProjects();
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      const filtered = currentCategory === 'All' 
+        ? PROJECTS 
+        : PROJECTS.filter(p => p.category === currentCategory);
+
+      document.getElementById('projectCountDisplay').textContent = `${filtered.length} Projects`;
+      const favs = getFavorites();
+
+      container.innerHTML = filtered.map(p => `
+        <div class="project-card">
+          <div class="project-visual">
+            <div class="project-badge">${p.category}</div>
+            <button class="project-fav-btn ${favs.includes(p.id) ? 'active' : ''}" onclick="toggleFavorite(${p.id})">
+              ${favs.includes(p.id) ? '♥' : '♡'}
+            </button>
+            <div style="font-family: 'Cinzel', serif; font-size: 40px; color: rgba(212,175,55,0.15); font-weight: 800;">AD</div>
+            <div class="locality-bar">
+              <span>📍</span> <span>${p.locality}</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">${p.title}</div>
+            <div class="project-style">${p.style}</div>
+            <div class="project-desc">${p.desc}</div>
+            
+            <div class="project-specs">
+              <div class="spec-item">
+                <span>CARPET AREA</span>
+                <strong>${p.carpet.toLocaleString('en-IN')} sq.ft</strong>
+              </div>
+              <div class="spec-item">
+                <span>EXECUTION</span>
+                <strong>${p.days} Days</strong>
+              </div>
+            </div>
+
+            <div class="price-box">
+              <div class="price-label">ESTIMATED INVESTMENT</div>
+              <div class="price-val">
+                ${p.price} <span class="price-rate">(${p.rate})</span>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn-detail" onclick="openDetail(${p.id})">Details</button>
+              <button class="btn-inquire" onclick="openInquiryForm('${p.title}', '${p.locality}', ${p.carpet})">Inquire Now</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openDetail(id) {
+      const p = PROJECTS.find(item => item.id === id);
+      if (!p) return;
+      const favs = getFavorites();
+
+      const container = document.getElementById('detailContent');
+      container.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <span class="project-badge" style="position: static;">${p.category}</span>
+          <button class="project-fav-btn ${favs.includes(p.id) ? 'active' : ''}" style="position: static;" onclick="toggleFavorite(${p.id}); openDetail(${p.id});">
+            ${favs.includes(p.id) ? '♥' : '♡'}
+          </button>
+        </div>
+        <h2 style="font-size: 20px; color: var(--text-white); margin-top: 10px; font-weight: 800;">${p.title}</h2>
+        <div style="color: var(--gold-light); font-size: 13px; margin-top: 2px;">📍 ${p.locality}</div>
+        <div style="color: var(--copper); font-size: 13px; margin-top: 2px;">Style: ${p.style}</div>
+
+        <div style="background: var(--bg-card); padding: 12px; border-radius: 12px; margin-top: 14px; border: 1px solid var(--border);">
+          <div style="font-size: 10px; color: var(--gold-light); font-weight: bold;">INVESTMENT & TIMELINE</div>
+          <div style="font-size: 18px; color: var(--gold-primary); font-weight: 800; margin-top: 2px;">${p.price}</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Rate: ${p.rate} • Carpet: ${p.carpet.toLocaleString('en-IN')} sq.ft • Duration: ${p.days} Days</div>
+        </div>
+
+        <div style="margin-top: 14px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--text-white);">Design Philosophy:</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.5;">${p.desc}</p>
+        </div>
+
+        <div style="margin-top: 14px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--text-white);">Premium Finishes Included:</div>
+          <div class="highlights-list">
+            ${p.highlights.map(h => `<div class="highlight-pill">✦ ${h}</div>`).join('')}
+          </div>
+        </div>
+
+        <button class="btn-submit-form" style="margin-top: 18px;" onclick="openInquiryForm('${p.title}', '${p.locality}', ${p.carpet})">Fill Requirement Form for This Project</button>
+        <button class="btn-whatsapp-form" onclick="directWhatsAppProject('${p.title}', '${p.locality}', '${p.price}')">💬 WhatsApp Age Décor Studio</button>
+      `;
+
+      navigateTo('screen-detail');
+    }
+
+    function openInquiryForm(title, locality = '', area = 1850) {
+      document.getElementById('formProjectTitle').textContent = title;
+      if (area) document.getElementById('inqCarpet').value = area;
+      if (locality) {
+        const select = document.getElementById('inqLocality');
+        for (let i = 0; i < select.options.length; i++) {
+          if (locality.toLowerCase().includes(select.options[i].text.toLowerCase().split(' ')[0])) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      navigateTo('screen-form');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('inqName').value.trim();
+      const phone = document.getElementById('inqPhone').value.trim();
+      const email = document.getElementById('inqEmail').value.trim();
+      const locality = document.getElementById('inqLocality').value;
+      const config = document.getElementById('inqConfig').value;
+      const carpet = document.getElementById('inqCarpet').value;
+      const budget = document.getElementById('inqBudget').value;
+      const notes = document.getElementById('inqNotes').value.trim() || 'Standard turnkey consultation';
+      const project = document.getElementById('formProjectTitle').textContent;
+
+      const record = {
+        project,
+        name,
+        phone,
+        email: email || 'N/A',
+        locality,
+        config,
+        carpet,
+        budget,
+        notes,
+        timestamp: new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })
+      };
+
+      saveInquiry(record);
+      alert(`Thank you, ${name}!\n\nYour consultation request for "${project}" has been saved securely on your device.\n\nYou have 100% control over this data in your Data Hub.`);
+      document.getElementById('inquiryForm').reset();
+      navigateTo('screen-datahub');
+    }
+
+    function submitToWhatsApp() {
+      const name = document.getElementById('inqName').value.trim() || 'Client';
+      const phone = document.getElementById('inqPhone').value.trim() || '';
+      const locality = document.getElementById('inqLocality').value;
+      const config = document.getElementById('inqConfig').value;
+      const carpet = document.getElementById('inqCarpet').value || '1850';
+      const budget = document.getElementById('inqBudget').value;
+      const notes = document.getElementById('inqNotes').value.trim() || 'General Turnkey';
+      const project = document.getElementById('formProjectTitle').textContent;
+
+      const msg = `Hello Age Décor Interior Design Mumbai Team,\n\nI want to discuss my interior design project:\n• Project: ${project}\n• Client: ${name}\n• Phone: ${phone}\n• Locality: ${locality}\n• Config: ${config} (${carpet} sq.ft)\n• Budget: ${budget}\n• Specific Needs: ${notes}`;
+      window.open(`https://api.whatsapp.com/send?phone=918000737561&text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function directWhatsAppProject(title, locality, price) {
+      const msg = `Hello Age Décor Interior Design Mumbai,\n\nI saw your project "${title}" in ${locality} (Estimated: ${price}). I'd like to book a consultation for my home.`;
+      window.open(`https://api.whatsapp.com/send?phone=918000737561&text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function renderInquiries() {
+      const list = getInquiries();
+      const container = document.getElementById('inquiriesListContainer');
+      document.getElementById('inqCountText').textContent = `${list.length} Records`;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; color: var(--text-hint); font-size: 12px; padding: 30px 10px;">
+            No consultation inquiries yet.<br>When you submit a project form, it will appear here under your total control.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(inq => `
+        <div class="inquiry-card">
+          <button class="btn-del-inq" onclick="deleteInquiry('${inq.timestamp}')">Delete Record</button>
+          <div style="font-size: 14px; font-weight: 700; color: var(--gold-primary); margin-right: 70px;">${inq.project}</div>
+          <div style="font-size: 12px; color: var(--text-white); margin-top: 4px;">${inq.name} • ${inq.phone} (${inq.locality})</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Scope: ${inq.config} • ${inq.carpet} sq.ft • Budget: ${inq.budget}</div>
+          <div style="font-size: 11px; color: var(--gold-light); margin-top: 6px; background: rgba(0,0,0,0.3); padding: 6px; border-radius: 6px;">
+            Needs: ${inq.notes}
+          </div>
+          <div style="font-size: 10px; color: var(--text-hint); margin-top: 6px;">Saved on Device: ${inq.timestamp}</div>
+        </div>
+      `).join('');
+    }
+
+    // Cost Estimator System
+    function selectTier(rate, tierId, label) {
+      selectedTierRate = rate;
+      selectedTierLabel = label;
+      document.querySelectorAll('.tier-option').forEach(t => t.classList.remove('selected'));
+      document.getElementById(tierId)?.classList.add('selected');
+      runEstimatorCalculation();
+    }
+
+    function runEstimatorCalculation() {
+      const area = parseInt(document.getElementById('calcArea').value) || 0;
+      const total = area * selectedTierRate;
+      const days = Math.min(150, Math.max(45, Math.round(45 + (area / 500) * 10)));
+
+      document.getElementById('calcTotalDisplay').textContent = '₹' + total.toLocaleString('en-IN');
+      document.getElementById('calcTimelineDisplay').textContent = `Estimated Duration: ~${days} Working Days`;
+    }
+
+    function bookWithEstimate() {
+      const area = document.getElementById('calcArea').value || '1500';
+      openInquiryForm(`Custom Interior (${selectedTierLabel})`, '', area);
+    }
+
+    function toggleSwitch(elem) {
+      elem.classList.toggle('active');
+    }
+
+    // Init App
+    renderProjects();
+    runEstimatorCalculation();
+
+    // Clock update
+    setInterval(() => {
+      const d = new Date();
+      document.getElementById('clock').textContent = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }, 1000);
+  </script>
+</body>
+</html>

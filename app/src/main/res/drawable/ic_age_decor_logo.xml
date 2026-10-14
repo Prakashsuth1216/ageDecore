@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <!-- Outer Shield / Diamond Frame -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#D4AF37"
+        android:strokeWidth="2.5"
+        android:pathData="M 48,6 L 86,28 L 86,68 L 48,90 L 10,68 L 10,28 Z" />
+
+    <!-- Inner Architectural Geometric Compass & Facet -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#C88A58"
+        android:strokeWidth="1.2"
+        android:pathData="M 48,14 L 78,32 L 78,64 L 48,82 L 18,64 L 18,32 Z" />
+
+    <!-- Stylized Architectural 'A' Letterform -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M 48,22 L 32,66 L 38,66 L 43,52 L 53,52 L 58,66 L 64,66 Z M 48,34 L 51.5,47 L 44.5,47 Z" />
+
+    <!-- Interlocking 'D' Arc for Decor -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#EED789"
+        android:strokeWidth="2.5"
+        android:pathData="M 44,38 L 56,38 C 65,38 65,58 56,58 L 44,58" />
+
+    <!-- Central Accent Diamond Sparkle -->
+    <path
+        android:fillColor="#EED789"
+        android:pathData="M 48,20 L 50,24 L 48,28 L 46,24 Z" />
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M 48,72 L 52,76 L 48,80 L 44,76 Z" />
+</vector>
